@@ -106,7 +106,7 @@ function Main() {
                 <div>
                   <p>
                     <span>🗓</span>
-                    <span>{movie.Year}</span>
+                    {/* <span>{movie.Year}</span> */}
                   </p>
                 </div>
               </li>
