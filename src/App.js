@@ -50,20 +50,15 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function NavBar() {
-  return (
-    <nav className="nav-bar">
-      <Logo />
-      <SearchBar />
-      <Result />
-    </nav>
-  );
+function NavBar({ children }) {
+  //structural component
+  return <nav className="nav-bar">{children}</nav>;
 }
 
-function Result() {
+function Result({ movies }) {
   return (
     <p className="num-results">
-      Found <strong>X</strong> results
+      Found <strong>{movies.length}</strong> results
       {/* {movies.length} */}
     </p>
   );
@@ -91,7 +86,7 @@ function SearchBar() {
   );
 }
 
-function Listbox() {
+function Listbox({ movies }) {
   const [isOpen1, setIsOpen1] = useState(true);
   return (
     <div className="box">
@@ -101,14 +96,12 @@ function Listbox() {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <Movielist />}
+      {isOpen1 && <Movielist movies={movies} />}
     </div>
   );
 }
 
-function Movielist() {
-  const [movies, setMovies] = useState(tempMovieData);
-
+function Movielist({ movies }) {
   return (
     <ul className="list">
       {movies?.map((movie) => (
@@ -219,19 +212,25 @@ function Watchedbox() {
   );
 }
 
-function Main() {
+function Main({ movies }) {
   return (
     <main className="main">
-      <Listbox />
+      <Listbox movies={movies} />
       <Watchedbox />
     </main>
   );
 }
 export default function App() {
+  const [movies, setMovies] = useState(tempMovieData);
+  // structural component
   return (
     <>
-      <NavBar />
-      <Main />
+      <NavBar>
+        <Logo />
+        <SearchBar />
+        <Result movies={movies} />
+      </NavBar>
+      <Main movies={movies} />
     </>
   );
 }
