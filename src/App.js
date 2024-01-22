@@ -86,7 +86,7 @@ function SearchBar() {
   );
 }
 
-function Listbox({ movies }) {
+function Listbox({ children }) {
   const [isOpen1, setIsOpen1] = useState(true);
   return (
     <div className="box">
@@ -96,7 +96,7 @@ function Listbox({ movies }) {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <Movielist movies={movies} />}
+      {isOpen1 && children}
     </div>
   );
 }
@@ -212,13 +212,8 @@ function Watchedbox() {
   );
 }
 
-function Main({ movies }) {
-  return (
-    <main className="main">
-      <Listbox movies={movies} />
-      <Watchedbox />
-    </main>
-  );
+function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
@@ -230,7 +225,12 @@ export default function App() {
         <SearchBar />
         <Result movies={movies} />
       </NavBar>
-      <Main movies={movies} />
+      <Main>
+        <Listbox>
+          <Movielist movies={movies} />
+        </Listbox>
+        <Watchedbox />
+      </Main>
     </>
   );
 }
