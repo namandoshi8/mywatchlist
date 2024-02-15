@@ -86,7 +86,7 @@ function SearchBar() {
   );
 }
 
-function Box({ children }) {
+function Box({ element }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -94,7 +94,7 @@ function Box({ children }) {
       <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
         {isOpen ? "–" : "+"}
       </button>
-      {isOpen && children}
+      {isOpen && element}
     </div>
   );
 }
@@ -221,13 +221,25 @@ export default function App() {
         <Result movies={movies} />
       </NavBar>
       <Main>
-        <Box>
+        <Box element={<Movielist movies={movies} />} />
+        {/* passing in as an element prop */}
+        {/* <Box>
           <Movielist movies={movies} />
         </Box>
         <Box>
           <Watchedsummary watched={watched} />
           <Watchedlist watched={watched} />
-        </Box>
+        </Box> */}
+        {/* above is the example of how to pass in as children */}
+        <Box
+          element={
+            <>
+              <Watchedsummary watched={watched} />
+              <Watchedlist watched={watched} />
+            </>
+          }
+        />
+        {/* passing in as element prop */}
       </Main>
     </>
   );
