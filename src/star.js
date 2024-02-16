@@ -19,6 +19,7 @@ const textstyle = {
 export default function Star({ maxrating = 5 }) {
   const [rating, setRating] = useState(0);
 
+  const [hover, setHover] = useState(0);
   function HandleRating(rating) {
     setRating(rating);
   }
@@ -30,15 +31,17 @@ export default function Star({ maxrating = 5 }) {
           <span>
             <Starx
               key={i}
+              full={hover ? hover >= i + 1 : rating >= i + 1}
               onClick={() => HandleRating(i + 1)}
-              full={rating >= i + 1}
+              onHover={() => setHover(i + 1)}
+              onHoverOut={() => setHover(0)}
             />
             {/* {i + 1} */}
             {/* {console.log(i + 1)} */}
           </span>
         ))}
       </div>
-      <p style={textstyle}> {rating || ""}</p>
+      <p style={textstyle}> {hover || rating || ""}</p>
     </div>
   );
 }
@@ -50,9 +53,15 @@ const starstylex = {
   cursor: "pointer",
 };
 
-function Starx({ onClick, full }) {
+function Starx({ onClick, full, onHover, onHoverOut }) {
   return (
-    <span role="button" style={starstylex} onClick={onClick}>
+    <span
+      role="button"
+      style={starstylex}
+      onClick={onClick}
+      onMouseEnter={onHover}
+      onMouseLeave={onHoverOut}
+    >
       {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
