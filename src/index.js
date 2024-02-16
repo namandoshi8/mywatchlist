@@ -8,7 +8,8 @@ import Star from "./star";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Star maxrating={10} />
+    {/* <App /> */}
+    {/* <Star maxrating={10} /> */}
     <Star />
   </React.StrictMode>
 );
