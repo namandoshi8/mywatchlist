@@ -1,4 +1,8 @@
 import { useState } from "react";
+import "./App.css";
+import NavBar from "./Components/Navbar";
+import Logo from "./Components/Logo";
+import SearchBar from "./Components/Searchbar";
 
 const tempMovieData = [
   {
@@ -50,39 +54,12 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function NavBar({ children }) {
-  //structural component
-  return <nav className="nav-bar">{children}</nav>;
-}
-
 function Result({ movies }) {
   return (
     <p className="num-results">
       Found <strong>{movies.length}</strong> results
       {/* {movies.length} */}
     </p>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="logo">
-      <span role="img">🍿</span>
-      <h1>MyWatchlist</h1>
-    </div>
-  );
-}
-
-function SearchBar() {
-  const [query, setQuery] = useState("");
-  return (
-    <input
-      className="search"
-      type="text"
-      placeholder="Search movies..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-    />
   );
 }
 
@@ -209,6 +186,7 @@ function WatchedMovies({ movie }) {
 function Main({ children }) {
   return <main className="main">{children}</main>;
 }
+
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   // structural component
