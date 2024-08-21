@@ -14,7 +14,7 @@ const starstyle = {
 export default function Star({
   maxrating = 5,
   color = "#fcc419",
-  size = "48px",
+  size = 48,
   className = "",
   message = [],
   defaultRating = 0,
@@ -59,8 +59,8 @@ export default function Star({
 
 function Starx({ onClick, full, onHover, onHoverOut, color, size }) {
   const starstylex = {
-    width: "48px",
-    height: "48px",
+    width: `${size}px`,
+    height: `${size}px`,
     display: "block",
     cursor: "pointer",
     color,
