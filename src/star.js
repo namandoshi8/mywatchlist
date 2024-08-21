@@ -34,7 +34,7 @@ export default function Star({
   }
   return (
     <div style={containerstyle}>
-      Hello!
+      {/* Hello! */}
       <div style={starstyle}>
         {Array.from({ length: maxrating }, (_, i) => (
           <span>
