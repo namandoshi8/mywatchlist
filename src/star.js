@@ -38,7 +38,7 @@ export default function Star({
     fontSize: size,
   };
   const [rating, setRating] = useState(defaultRating);
-  const [tempRating, setTempRating] = useState(0);
+  // const [tempRating, setTempRating] = useState(0);
 
   const [hover, setHover] = useState(0);
   function HandleRating(rating) {
